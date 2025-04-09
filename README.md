@@ -2,13 +2,14 @@
 
 ###
 
-<div align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=Tanishq7361&hide_title=false&hide_rank=false&show_icons=true&include_all_commits=true&count_private=true&disable_animations=false&theme=dracula&locale=en&hide_border=false" height="150" alt="stats graph"  />
-  <img src="https://github-readme-stats.vercel.app/api/top-langs?username=Tanishq7361&locale=en&hide_title=false&layout=compact&card_width=320&langs_count=5&theme=dracula&hide_border=false" height="150" alt="languages graph"  />
-</div>
+[![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=Tanishq7361&hide=prs,issues&show_icons=true&theme=tokyonight)](https://github.com/anuraghazra/github-readme-stats)
+<br>
+<br>
+## Top Repo
+[![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=Tanishq7361&repo=Education-Portal&theme=tokyonight)](https://github.com/anuraghazra/github-readme-stats)
+[![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=Tanishq7361&repo=SnakeGame&theme=tokyonight)](https://github.com/anuraghazra/github-readme-stats)
 
 ###
-
 
 ###
 
