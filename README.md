@@ -1,18 +1,15 @@
 <h2 align="left">Hi 👋! My name is Tanishq </h2>
 
 ###
+![](https://github-readme-stats.vercel.app/api?username=Tanishq7361&theme=tokyonight&show_icons=true&hide=issues&hide_border=true&include_all_commits=false&count_private=true)<br/>
+![](https://github-readme-stats.vercel.app/api/top-langs/?username=Tanishq7361&theme=tokyonight&hide_border=true&include_all_commits=false&count_private=true&layout=compact)
+<br>
 
-[![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=Tanishq7361&hide=prs,issues&show_icons=true&theme=tokyonight)](https://github.com/anuraghazra/github-readme-stats)
-<br>
-<br>
-## Top Repo
+### Top Repo
 [![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=Tanishq7361&repo=Education-Portal&theme=tokyonight)](https://github.com/anuraghazra/github-readme-stats)
 [![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=Tanishq7361&repo=SnakeGame&theme=tokyonight)](https://github.com/anuraghazra/github-readme-stats)
 
 ###
-
-###
-
 <div align="left">
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" height="30" alt="javascript logo"  />
   <img width="12" />
@@ -35,6 +32,7 @@
 </div>
 
 ###
+
 
 <br clear="both">
 
