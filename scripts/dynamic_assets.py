@@ -1,9 +1,13 @@
-"""Renderers for the SVGs that change with your GitHub activity."""
+"""Renderers for dynamic SVGs (stats, languages, heatmap) in Cyberpunk HUD theme."""
 import math
 import random
 
-from medieval import *  # noqa: F401,F403
-from medieval import _n
+from cyber import (
+    CYAN, CYAN_DIM, CYAN_GLOW, MAGENTA, PURPLE, NEON_GREEN, AMBER,
+    DARK_BG, PANEL_BG, PANEL_BORDER, TEXT_MAIN, TEXT_MUTED,
+    cyber_svg, cyber_panel, scanline, reticle
+)
+from medieval import txt, width, fit, wrap, para, esc, _n
 
 MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
 DASH = "—"
@@ -14,132 +18,164 @@ def fmt(v):
 
 
 def _glyph_commit(cx, cy):
-    return sword(cx, cy + 4, 45, .55)
+    return (
+        f'<g transform="translate({cx} {cy})" stroke="{CYAN}" stroke-width="2" fill="none">'
+        f'<circle cx="0" cy="0" r="6"/>'
+        f'<line x1="-14" y1="0" x2="-6" y2="0"/>'
+        f'<line x1="6" y1="0" x2="14" y2="0"/>'
+        f'</g>'
+    )
 
 
 def _glyph_pr(cx, cy):
-    return (f'<g transform="translate({cx} {cy})" fill="none" stroke="url(#gold)" stroke-width="2" stroke-linecap="round">'
-            '<circle cx="-7" cy="-8" r="3.2"/><circle cx="-7" cy="9" r="3.2"/><circle cx="8" cy="9" r="3.2"/>'
-            '<path d="M-7 -4.8V5.8M-7 -1Q-7 4 8 5.6"/></g>')
+    return (
+        f'<g transform="translate({cx} {cy})" fill="none" stroke="{MAGENTA}" stroke-width="2" stroke-linecap="round">'
+        f'<circle cx="-7" cy="-8" r="3.2"/><circle cx="-7" cy="9" r="3.2"/><circle cx="8" cy="9" r="3.2"/>'
+        f'<path d="M-7 -4.8V5.8M-7 -1Q-7 4 8 5.6"/></g>'
+    )
 
 
 def _glyph_star(cx, cy):
     pts = []
     for k in range(10):
-        r = 12 if k % 2 == 0 else 5.2
+        r = 11 if k % 2 == 0 else 4.8
         a = -math.pi / 2 + k * math.pi / 5
         pts.append(f"{cx + r * math.cos(a):.1f},{cy + r * math.sin(a):.1f}")
-    return f'<polygon points="{" ".join(pts)}" fill="url(#gold)"/>'
+    return f'<polygon points="{" ".join(pts)}" fill="{AMBER}"/>'
 
 
 def _glyph_repo(cx, cy):
-    return (f'<g transform="translate({cx} {cy})" fill="none" stroke="url(#gold)" stroke-width="2" stroke-linejoin="round">'
-            '<path d="M-9 -11H7Q10 -11 10 -8V10H-6Q-9 10 -9 7Z"/><path d="M-9 7Q-9 4 -6 4H10"/><path d="M-3 -5H4" stroke-linecap="round"/></g>')
+    return (
+        f'<g transform="translate({cx} {cy})" fill="none" stroke="{NEON_GREEN}" stroke-width="2" stroke-linejoin="round">'
+        f'<path d="M-9 -11H7Q10 -11 10 -8V10H-6Q-9 10 -9 7Z"/><path d="M-9 7Q-9 4 -6 4H10"/><path d="M-3 -5H4" stroke-linecap="round"/></g>'
+    )
 
 
 def stats(d):
     W, H = 900, 468
-    defs = shine("sn", 100, 800, 6, 240) + (
-        '<linearGradient id="ringg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff1b8"/><stop offset=".5" stop-color="#d9a92e"/><stop offset="1" stop-color="#8a6d1f"/></linearGradient>')
-    b = [panel(W, H, 14, 7)]
+    b = [
+        cyber_panel(W, H, ch=16, stroke=CYAN, fill="url(#cyberCardBg)", stroke_w=1.4),
+        scanline(W, H, dur=6.0),
+    ]
 
-    def big(cx, cy, value, label, sub):
-        s = fit("deco", value, 52, 220, 1)
-        return (gold_text("deco", value, s, cx, cy, "sn", "middle", 1)
-                + txt("cin", label, 13, cx, cy + 34, SILVER, "middle", 4)
-                + txt("ital", sub, 18, cx, cy + 58, "#8fa0c6", "middle"))
+    def big(cx, cy, value, label, sub, col=CYAN):
+        s = fit("deco", value, 50, 220, 1)
+        return (
+            txt("deco", value, s, cx, cy, col, "middle", 1)
+            + f'<text x="{cx}" y="{cy + 34}" fill="{TEXT_MUTED}" font-family="monospace" font-size="11" font-weight="bold" text-anchor="middle" letter-spacing="2">{label}</text>'
+            + f'<text x="{cx}" y="{cy + 58}" fill="{TEXT_MUTED}" font-family="monospace" font-size="10" text-anchor="middle">{sub}</text>'
+        )
 
-    b.append(big(160, 150, fmt(d.get("total")), "TOTAL DEEDS", d.get("since_label", "since the first commit")))
-    b.append(big(740, 150, fmt(d.get("longest")), "LONGEST STREAK", d.get("longest_range", "")))
-    # centre medallion: current streak
-    cx, cy = 450, 138
+    b.append(big(160, 150, fmt(d.get("total")), "TOTAL TELEMETRY", d.get("since_label", "since first commit"), CYAN))
+    b.append(big(740, 150, fmt(d.get("longest")), "LONGEST OVERCLOCK", d.get("longest_range", ""), MAGENTA))
+
+    # Centre Reticle Medallion: Current Streak
+    cx, cy = 450, 140
     v = fmt(d.get("cur"))
-    b.append(f'<circle cx="{cx}" cy="{cy}" r="88" fill="url(#glowGold)" opacity=".35"><animate attributeName="opacity" values=".2;.45;.2" dur="4s" repeatCount="indefinite"/></circle>'
-             f'<circle cx="{cx}" cy="{cy}" r="68" fill="#0a0f1d" stroke="url(#ringg)" stroke-width="5"/>'
-             f'<circle cx="{cx}" cy="{cy}" r="59" fill="none" stroke="{GOLD}" stroke-opacity=".3" stroke-dasharray="2 5"/>'
-             f'<circle cx="{cx}" cy="{cy}" r="68" fill="none" stroke="#fff6cf" stroke-width="5" stroke-linecap="round" stroke-dasharray="46 383">'
-             f'<animateTransform attributeName="transform" type="rotate" from="0 {cx} {cy}" to="360 {cx} {cy}" dur="7s" repeatCount="indefinite"/></circle>'
-             f'<g transform="translate({cx} {cy - 66}) scale(.5)"><g>'
-             '<animateTransform attributeName="transform" type="scale" values="1 1;1.08 .92;.94 1.1;1 1" dur="1.2s" repeatCount="indefinite"/>'
-             f'<path d="{FLAME}" fill="#ff7a1a"/><g transform="scale(.72)"><path d="{FLAME}" fill="#ffb92e"/></g>'
-             f'<g transform="scale(.42)"><path d="{FLAME}" fill="#fff0a8"/></g></g></g>')
-    b.append(gold_text("deco", v, fit("deco", v, 54, 92, 0), cx, cy + 18, "sn", "middle", 0, False))
-    b.append(txt("cin", "CURRENT STREAK", 13, cx, cy + 102, GOLD_HI, "middle", 4))
-    b.append(txt("ital", d.get("cur_range", ""), 18, cx, cy + 126, "#8fa0c6", "middle"))
-    b.append(orn(450, 292, 380))
+    b.append(
+        f'<circle cx="{cx}" cy="{cy}" r="78" fill="#060c18" stroke="{PANEL_BORDER}" stroke-width="2"/>'
+        f'<circle cx="{cx}" cy="{cy}" r="70" fill="none" stroke="{CYAN}" stroke-width="2" stroke-dasharray="12 8">'
+        f'<animateTransform attributeName="transform" type="rotate" from="0 {cx} {cy}" to="360 {cx} {cy}" dur="10s" repeatCount="indefinite"/>'
+        f'</circle>'
+        f'<circle cx="{cx}" cy="{cy}" r="58" fill="none" stroke="{MAGENTA}" stroke-width="1.5" stroke-dasharray="18 12">'
+        f'<animateTransform attributeName="transform" type="rotate" from="360 {cx} {cy}" to="0 {cx} {cy}" dur="8s" repeatCount="indefinite"/>'
+        f'</circle>'
+    )
+    b.append(txt("deco", v, fit("deco", v, 48, 90, 0), cx, cy + 16, "#ffffff", "middle", 0))
+    b.append(f'<text x="{cx}" y="{cy + 104}" fill="{CYAN}" font-family="monospace" font-size="12" font-weight="bold" text-anchor="middle" letter-spacing="2">ACTIVE STREAK DAYS</text>')
+    b.append(f'<text x="{cx}" y="{cy + 124}" fill="{TEXT_MUTED}" font-family="monospace" font-size="10.5" text-anchor="middle">{d.get("cur_range", "")}</text>')
 
-    cols = [(_glyph_commit, fmt(d.get("commits")), "COMMITS · 12 MO"),
-            (_glyph_pr, fmt(d.get("prs")), "PULL REQUESTS"),
-            (_glyph_star, fmt(d.get("stars")), "STARS EARNED"),
-            (_glyph_repo, fmt(d.get("repos")), "PUBLIC REPOS")]
-    for i, (g, val, lab) in enumerate(cols):
+    # Divider line
+    b.append(f'<line x1="60" y1="284" x2="840" y2="284" stroke="{PANEL_BORDER}" stroke-width="1.2"/>')
+
+    cols = [
+        (_glyph_commit, fmt(d.get("commits")), "COMMITS // 12 MO", CYAN),
+        (_glyph_pr, fmt(d.get("prs")), "PULL REQUESTS", MAGENTA),
+        (_glyph_star, fmt(d.get("stars")), "STARS EARNED", AMBER),
+        (_glyph_repo, fmt(d.get("repos")), "PUBLIC REPOS", NEON_GREEN)
+    ]
+    for i, (g, val, lab, col) in enumerate(cols):
         x = 112 + i * 225
-        b.append(f'<circle cx="{x}" cy="330" r="22" fill="#0b1020" stroke="{GOLD}" stroke-opacity=".55"/>'
-                 f'<circle cx="{x}" cy="330" r="27" fill="url(#glowGold)" opacity=".0"><animate attributeName="opacity" values="0;.5;0" dur="{3 + i * .5}s" begin="-{i}s" repeatCount="indefinite"/></circle>'
-                 + g(x, 330)
-                 + gold_text("deco", val, fit("deco", val, 32, 170, 1), x, 393, "sn", "middle", 1, False)
-                 + txt("cin", lab, 11.5, x, 418, SILVER, "middle", 3))
+        b.append(
+            f'<circle cx="{x}" cy="326" r="22" fill="#071020" stroke="{col}" stroke-width="1.2"/>'
+            f'<circle cx="{x}" cy="326" r="26" fill="{col}" opacity=".15"><animate attributeName="r" values="22;30;22" dur="3s" repeatCount="indefinite"/></circle>'
+            + g(x, 326)
+            + txt("deco", val, fit("deco", val, 30, 160, 1), x, 390, col, "middle", 1)
+            + f'<text x="{x}" y="{416}" fill="{TEXT_MUTED}" font-family="monospace" font-size="10" font-weight="bold" text-anchor="middle" letter-spacing="1">{lab}</text>'
+        )
         if i:
-            b.append(f'<rect x="{x - 112.5}" y="312" width="1" height="100" fill="{GOLD}" opacity=".18"/>')
-    b.append(txt("ital", d.get("updated_label", "Awaiting the first muster of the scribes"), 15, 450, 452, "#5f6f96", "middle"))
-    return svg(W, H, "".join(b), defs, "Ledger of the realm: contributions, streaks, commits, pull requests, stars and public repositories")
+            b.append(f'<line x1="{x - 112.5}" y1="306" x2="{x - 112.5}" y2="430" stroke="{PANEL_BORDER}" stroke-width="1"/>')
+
+    b.append(f'<text x="450" y="452" fill="{TEXT_MUTED}" font-family="monospace" font-size="10" text-anchor="middle" letter-spacing="1">{d.get("updated_label", "// NEURAL LEDGER SYNCED VIA GITHUB GRAPHQL API //")}</text>')
+    return cyber_svg(W, H, "".join(b), "", "GitHub Cyber Stats Matrix")
 
 
-PALETTE = [("#f7dc7a", "#a97f1c"), ("#e8eefc", "#7d8bab"), ("#6fe0b0", "#1b7a5a"),
-           ("#ef6b7d", "#8e2436"), ("#7fb0ff", "#2a4fa0"), ("#ffb45a", "#b0561a")]
+PALETTE = [
+    ("#00f0ff", "#0088cc"),
+    ("#ff007f", "#aa0055"),
+    ("#00ff9d", "#00995e"),
+    ("#fcee0a", "#cc9900"),
+    ("#9d00ff", "#5500aa"),
+    ("#38b6ff", "#0055aa")
+]
 
 
 def langs(d):
     rows = (d.get("langs") or [])[:6]
     placeholder = not rows
     n = 0 if placeholder else len(rows)
-    W, H = 900, (190 if placeholder else 96 + n * 46 + 8)
-    defs = "".join(f'<linearGradient id="lg{i}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="{a}"/><stop offset="1" stop-color="{c}"/></linearGradient>'
+    W, H = 900, (190 if placeholder else 96 + n * 48 + 12)
+    defs = "".join(f'<linearGradient id="cyberLg{i}" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="{a}"/><stop offset="1" stop-color="{c}"/></linearGradient>'
                    for i, (a, c) in enumerate(PALETTE))
-    defs += '<linearGradient id="sw" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".55"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>'
-    b = [panel(W, H, 14, 7),
-         txt("cinb", "TONGUES BY WEIGHT", 15, 48, 50, "url(#gold)", "start", 5),
-         txt("ital", "measured in bytes across my public repositories", 18, W - 48, 50, "#8fa0c6", "end"),
-         f'<rect x="48" y="62" width="{W - 96}" height="1" fill="url(#goldH)" opacity=".4"/>']
-    bx, bw = 250, 500
+    
+    b = [
+        cyber_panel(W, H, ch=14, stroke=CYAN, fill="url(#cyberCardBg)", stroke_w=1.2),
+        f'<text x="48" y="48" fill="{CYAN}" font-family="monospace" font-size="14" font-weight="bold" letter-spacing="2">TELEMETRY // CODE METRICS BY WEIGHT</text>',
+        f'<text x="{W - 48}" y="48" fill="{TEXT_MUTED}" font-family="monospace" font-size="11" text-anchor="end">BYTES PER LANGUAGE IN REPOS</text>',
+        f'<line x1="48" y1="62" x2="{W - 48}" y2="62" stroke="{PANEL_BORDER}" stroke-width="1.2"/>'
+    ]
+
+    bx, bw = 240, 520
     for i in range(n):
-        y = 88 + i * 46
+        y = 86 + i * 48
         name, pct = rows[i]
-        col = i % len(PALETTE)
-        fw = max(16, bw * pct / 100) if not placeholder else 0
-        b.append(f'<circle cx="60" cy="{y + 9}" r="5" fill="url(#lg{col})"/>')
-        b.append(txt("cinb", name.upper(), fit("cinb", name.upper(), 14, 165, 2), 78, y + 14, PARCH, "start", 2))
-        b.append(f'<rect x="{bx}" y="{y}" width="{bw}" height="18" rx="9" fill="#080c18" stroke="{GOLD}" stroke-opacity=".28"/>')
+        col_idx = i % len(PALETTE)
+        col_pair = PALETTE[col_idx]
+        fw = max(14, bw * pct / 100) if not placeholder else 0
+        b.append(f'<circle cx="58" cy="{y + 11}" r="5" fill="{col_pair[0]}"/>')
+        b.append(f'<text x="76" y="{y + 16}" fill="{TEXT_MAIN}" font-family="monospace" font-size="12" font-weight="bold">{name.upper()}</text>')
+        b.append(f'<rect x="{bx}" y="{y}" width="{bw}" height="18" fill="#070d1a" stroke="{PANEL_BORDER}" stroke-width="1"/>')
         if not placeholder:
-            b.append(f'<rect x="{bx}" y="{y}" width="{fw:.0f}" height="18" rx="9" fill="url(#lg{col})"/>'
-                     f'<clipPath id="c{i}"><rect x="{bx}" y="{y}" width="{fw:.0f}" height="18" rx="9"/></clipPath>'
-                     f'<g clip-path="url(#c{i})"><rect y="{y}" width="60" height="18" fill="url(#sw)">'
-                     f'<animate attributeName="x" values="{bx - 60};{bx + fw:.0f}" dur="{3.4 + i * .5:.1f}s" begin="-{i * .8:.1f}s" repeatCount="indefinite"/></rect></g>')
-            b.append(txt("cinb", f"{pct:.1f}%", 14, W - 48, y + 14, "#f4e2a4", "end", 1.5))
+            b.append(f'<rect x="{bx}" y="{y}" width="{fw:.0f}" height="18" fill="url(#cyberLg{col_idx})"/>')
+            b.append(f'<text x="{W - 48}" y="{y + 15}" fill="{col_pair[0]}" font-family="monospace" font-size="12" font-weight="bold" text-anchor="end">{pct:.1f}%</text>')
+
     if placeholder:
-        b.append(txt("ital", "The scribes are counting the tongues…", 26, 450, 132, "#f4e2a4", "middle"))
-    return svg(W, H, "".join(b), defs, "Languages by share of code: " + (", ".join(f"{a} {p:.0f}%" for a, p in rows) or "not yet counted"))
+        b.append(f'<text x="450" y="130" fill="{CYAN}" font-family="monospace" font-size="14" text-anchor="middle">[ COMPILING CODE TELEMETRY SCANS... ]</text>')
+
+    return cyber_svg(W, H, "".join(b), defs, "Cyber Language Distribution")
 
 
-LEVELS = ["#151c2f", "#5a4713", "#9a7a1c", "#dcae2e", "#ffe38a"]
+LEVELS = ["#070d1c", "#004759", "#008399", "#00c8db", "#00f0ff"]
 
 
 def heatmap(d):
     weeks = d.get("weeks")
     W, H = 900, 240
     c, g, x0, y0 = 12, 3, 84, 94
-    defs = ('<linearGradient id="beam" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff2c0" stop-opacity="0"/>'
-            '<stop offset=".5" stop-color="#fff2c0" stop-opacity=".16"/><stop offset="1" stop-color="#fff2c0" stop-opacity="0"/></linearGradient>')
     placeholder = not weeks
     if placeholder:
         weeks = [[(None, 0)] * 7 for _ in range(53)]
     mx = max((cnt for wk in weeks for _, cnt in wk), default=0)
     total = d.get("year_total")
-    b = [panel(W, H, 14, 7),
-         txt("cinb", "CHRONICLE OF DEEDS", 15, 48, 50, "url(#gold)", "start", 5),
-         txt("ital", (f"{total:,} deeds in the past year" if total is not None else "the past year, day by day"), 18, W - 48, 50, "#8fa0c6", "end"),
-         f'<rect x="48" y="62" width="{W - 96}" height="1" fill="url(#goldH)" opacity=".4"/>']
-    rng = random.Random(5)
+
+    b = [
+        cyber_panel(W, H, ch=14, stroke=CYAN, fill="url(#cyberCardBg)", stroke_w=1.2),
+        f'<text x="48" y="48" fill="{CYAN}" font-family="monospace" font-size="14" font-weight="bold" letter-spacing="2">CHRONICLE // NEURAL FIRINGS MATRIX</text>',
+        f'<text x="{W - 48}" y="48" fill="{NEON_GREEN}" font-family="monospace" font-size="11" text-anchor="end">{total:,} CONTRIBUTIONS IN PAST YEAR' if total is not None else f'<text x="{W - 48}" y="48" fill="{NEON_GREEN}" font-family="monospace" font-size="11" text-anchor="end">ANNUAL SENSOR MATRIX',
+        f'<line x1="48" y1="62" x2="{W - 48}" y2="62" stroke="{PANEL_BORDER}" stroke-width="1.2"/>'
+    ]
+
+    rng = random.Random(42)
     prev, last_x = None, -99
     cells = []
     for ci, wk in enumerate(weeks):
@@ -149,31 +185,30 @@ def heatmap(d):
             m = int(first[5:7]) - 1
             if m != prev:
                 if ci < len(weeks) - 2 and x - last_x >= 40:
-                    b.append(txt("cin", MONTHS[m].upper(), 10, x, 84, "#8fa0c6", "start", 1.5))
+                    b.append(f'<text x="{x}" y="82" fill="{TEXT_MUTED}" font-family="monospace" font-size="9.5">{MONTHS[m].upper()}</text>')
                     last_x = x
                 prev = m
         for ri, (dt, cnt) in enumerate(wk):
             lvl = 0 if cnt <= 0 or mx == 0 else max(1, min(4, math.ceil(4 * cnt / mx)))
             y = y0 + ri * (c + g)
             extra = ""
-            if lvl == 4 and rng.random() < .45:
-                extra = f'><animate attributeName="fill" values="{LEVELS[4]};#fffbe6;{LEVELS[4]}" dur="{rng.uniform(2, 5):.1f}s" begin="-{rng.uniform(0, 4):.1f}s" repeatCount="indefinite"/></rect'
-            cells.append(f'<rect x="{x}" y="{y}" width="{c}" height="{c}" rx="3" fill="{LEVELS[lvl]}"{extra}/>'.replace("/></rect/>", "/></rect>"))
+            if lvl == 4 and rng.random() < .4:
+                extra = f'><animate attributeName="fill" values="{LEVELS[4]};#ffffff;{LEVELS[4]}" dur="{rng.uniform(2, 4):.1f}s" repeatCount="indefinite"/></rect'
+            cells.append(f'<rect x="{x}" y="{y}" width="{c}" height="{c}" fill="{LEVELS[lvl]}" stroke="#040814" stroke-width=".6"{extra}/>'.replace("/></rect/>", "/></rect>"))
+
     b.append("".join(cells))
     for ri, lab in ((1, "MON"), (3, "WED"), (5, "FRI")):
-        b.append(txt("cin", lab, 8.5, x0 - 8, y0 + ri * (c + g) + 10, "#6f7fa6", "end", 1))
-    gw = 53 * (c + g)
-    b.append(f'<clipPath id="gridclip"><rect x="{x0}" y="{y0}" width="{gw}" height="{7 * (c + g)}"/></clipPath>'
-             f'<g clip-path="url(#gridclip)"><rect y="{y0}" width="110" height="{7 * (c + g)}" fill="url(#beam)">'
-             f'<animate attributeName="x" values="{x0 - 110};{x0 + gw}" dur="7s" repeatCount="indefinite"/></rect></g>')
-    # legend
-    ly = H - 34
-    lx = W - 48 - 5 * (c + 4) - 56
-    b.append(txt("cin", "FEWER", 9.5, lx, ly + 10, "#6f7fa6", "end", 2))
+        b.append(f'<text x="{x0 - 8}" y="{y0 + ri * (c + g) + 9}" fill="{TEXT_MUTED}" font-family="monospace" font-size="8.5" text-anchor="end">{lab}</text>')
+
+    # Legend
+    ly = H - 28
+    lx = W - 48 - 5 * (c + 4) - 64
+    b.append(f'<text x="{lx}" y="{ly + 9}" fill="{TEXT_MUTED}" font-family="monospace" font-size="9" text-anchor="end">IDLE</text>')
     for i in range(5):
-        b.append(f'<rect x="{lx + 10 + i * (c + 4)}" y="{ly}" width="{c}" height="{c}" rx="3" fill="{LEVELS[i]}"/>')
-    b.append(txt("cin", "MORE", 9.5, lx + 16 + 5 * (c + 4), ly + 10, "#6f7fa6", "start", 2))
+        b.append(f'<rect x="{lx + 8 + i * (c + 4)}" y="{ly}" width="{c}" height="{c}" fill="{LEVELS[i]}"/>')
+    b.append(f'<text x="{lx + 14 + 5 * (c + 4)}" y="{ly + 9}" fill="{TEXT_MUTED}" font-family="monospace" font-size="9">PEAK</text>')
+
     if placeholder:
-        b.append('<rect x="240" y="118" width="420" height="56" rx="28" fill="#0a0f1d" fill-opacity=".92" stroke="#d9b13b" stroke-opacity=".5"/>'
-                 + txt("ital", "The scribes are compiling the chronicle…", 24, 450, 154, "#f4e2a4", "middle"))
-    return svg(W, H, "".join(b), defs, "Contribution heatmap for the past year")
+        b.append(f'<text x="450" y="140" fill="{CYAN}" font-family="monospace" font-size="14" text-anchor="middle">[ SENSORS COMPILING TELEMETRY CHRONICLE... ]</text>')
+
+    return cyber_svg(W, H, "".join(b), "", "Cyber Contribution Heatmap")

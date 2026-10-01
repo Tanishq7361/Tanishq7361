@@ -1,4 +1,4 @@
-"""Regenerate every static SVG in ../assets  (python scripts/build_assets.py)."""
+"""Regenerate every static & dynamic Cyberpunk HUD SVG in ../assets (python scripts/build_assets.py)."""
 import os
 import sys
 
@@ -22,28 +22,34 @@ if __name__ == "__main__":
     write("titles.svg", st.titles())
     write("divider.svg", st.divider())
     for slug, title, sub in [
-        ("about", "The Wanderer's Tale", "who walks these lands"),
-        ("armory", "The Armory", "tongues, tools & forges"),
-        ("quests", "Quests & Campaigns", "works forged with my own hands"),
-        ("feats", "Feats of Valor", "hackathons & honours"),
-        ("ledger", "Ledger of the Realm", "the living record of my deeds"),
-        ("contact", "Send a Raven", "seek an audience"),
+        ("about", "OPERATIVE DOSSIER", "tactical identity & protocols"),
+        ("armory", "CYBER ARSENAL", "core weapons & tech systems"),
+        ("quests", "ACTIVE MISSIONS", "deployed systems & repositories"),
+        ("feats", "COMBAT TELEMETRY", "hackathons & citations"),
+        ("ledger", "NEURAL LEDGER", "living record of deeds"),
+        ("contact", "COMMS ARRAY", "open transmission channels"),
     ]:
         write(f"h-{slug}.svg", st.section_header(title, sub))
     write("about.svg", st.about())
     write("armory.svg", st.arsenal())
-    write("quest-argus.svg", st.quest_argus())
-    write("quest-aicalc.svg", st.quest_aicalc())
+    write("quest-equisplit.svg", st.quest_equisplit())
+    write("quest-vaayu.svg", st.quest_vaayu())
+    write("quest-cachecore.svg", st.quest_cachecore())
     write("feats.svg", st.feats())
-    write("btn-repo.svg", st.button("BEHOLD THE REPO", "github", 250))
-    write("btn-demo.svg", st.button("ENTER THE LIVE DEMO", "portal", 280))
-    write("btn-email.svg", st.button("SEND A RAVEN", "mail", 250))
-    write("btn-linkedin.svg", st.button("THE GUILD HALL", "in", 250))
-    write("btn-github.svg", st.button("THE ARCHIVE", "github", 250))
+    write("btn-repo.svg", st.button("ACCESS REPO", "github", 250))
+    write("btn-demo.svg", st.button("LAUNCH DEMO", "portal", 250))
+    write("btn-email.svg", st.button("TRANSMIT MESSAGE", "mail", 250))
+    write("btn-linkedin.svg", st.button("NEURAL LINK", "in", 250))
+    write("btn-github.svg", st.button("CYBER ARCHIVE", "github", 250))
     write("footer.svg", st.footer())
-    # dynamic files: only create placeholders when missing (the workflow owns them)
-    seed = {"total": 738, "cur": 7, "cur_range": "Sep 23 – Sep 29", "longest": 7,
-            "longest_range": "Jun 14 – Jun 20, 2025", "since_label": "since Dec 2024"}
-    for name, fn, data in [("stats.svg", dyn.stats, seed), ("langs.svg", dyn.langs, {}), ("heatmap.svg", dyn.heatmap, {})]:
-        if not os.path.exists(os.path.join(OUT, name)):
-            write(name, fn(data))
+
+    # Generate dynamic telemetry SVGs with default data
+    seed = {
+        "total": 512, "cur": 14, "cur_range": "Active Streak",
+        "longest": 28, "longest_range": "All-Time Best", "since_label": "since first commit",
+        "commits": 420, "prs": 18, "stars": 12, "repos": 23, "updated_label": "// TELEMETRY SYNCED WITH GITHUB //"
+    }
+    sample_langs = [("C++", 48.2), ("Java", 24.5), ("Python", 14.8), ("JavaScript", 6.5), ("SQL", 3.8), ("HTML/CSS", 2.2)]
+    write("stats.svg", dyn.stats(seed))
+    write("langs.svg", dyn.langs({"langs": sample_langs}))
+    write("heatmap.svg", dyn.heatmap({"year_total": 512}))

@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 250" width="900" height="250" role="img" aria-label="CacheCore Cyber Deck"><title>CacheCore Cyber Deck</title><defs>
+<linearGradient id="cyberSky" x1="0" y1="0" x2="0" y2="1">
+  <stop offset="0" stop-color="#02040a"/>
+  <stop offset=".4" stop-color="#060b18"/>
+  <stop offset=".8" stop-color="#0a152e"/>
+  <stop offset="1" stop-color="#121026"/>
+</linearGradient>
+
+<linearGradient id="neonCyan" x1="0" y1="0" x2="1" y2="0">
+  <stop offset="0" stop-color="#00c8ff"/>
+  <stop offset=".5" stop-color="#00f0ff"/>
+  <stop offset="1" stop-color="#70f8ff"/>
+</linearGradient>
+
+<linearGradient id="neonMagenta" x1="0" y1="0" x2="1" y2="0">
+  <stop offset="0" stop-color="#ff0055"/>
+  <stop offset=".5" stop-color="#ff00a0"/>
+  <stop offset="1" stop-color="#bf00ff"/>
+</linearGradient>
+
+<linearGradient id="cyberLaser" x1="0" y1="0" x2="1" y2="0">
+  <stop offset="0" stop-color="#00f0ff" stop-opacity="0"/>
+  <stop offset=".15" stop-color="#00f0ff" stop-opacity=".8"/>
+  <stop offset=".5" stop-color="#ffffff" stop-opacity="1"/>
+  <stop offset=".85" stop-color="#ff007f" stop-opacity=".8"/>
+  <stop offset="1" stop-color="#ff007f" stop-opacity="0"/>
+</linearGradient>
+
+<linearGradient id="scanBeam" x1="0" y1="0" x2="0" y2="1">
+  <stop offset="0" stop-color="#00f0ff" stop-opacity="0"/>
+  <stop offset=".8" stop-color="#00f0ff" stop-opacity=".15"/>
+  <stop offset="1" stop-color="#00f0ff" stop-opacity=".85"/>
+</linearGradient>
+
+<linearGradient id="cyberCardBg" x1="0" y1="0" x2="0" y2="1">
+  <stop offset="0" stop-color="#091224" stop-opacity=".96"/>
+  <stop offset="1" stop-color="#050a16" stop-opacity=".98"/>
+</linearGradient>
+
+<pattern id="cyberGrid" width="30" height="30" patternUnits="userSpaceOnUse">
+  <path d="M 30 0 L 0 0 0 30" fill="none" stroke="#00f0ff" stroke-width=".7" stroke-opacity=".08"/>
+</pattern>
+
+<pattern id="hexGrid" width="28" height="48.5" patternUnits="userSpaceOnUse">
+  <path d="M14 0L28 8.08V24.25L14 32.33L0 24.25V8.08Z M0 48.5L14 40.42L28 48.5" fill="none" stroke="#00f0ff" stroke-width=".6" stroke-opacity=".06"/>
+</pattern>
+
+<filter id="glowCyan" x="-40%" y="-40%" width="180%" height="180%">
+  <feGaussianBlur stdDeviation="3.5" result="blur"/>
+  <feMerge>
+    <feMergeNode in="blur"/>
+    <feMergeNode in="SourceGraphic"/>
+  </feMerge>
+</filter>
+
+<filter id="glowMagenta" x="-40%" y="-40%" width="180%" height="180%">
+  <feGaussianBlur stdDeviation="3.5" result="blur"/>
+  <feMerge>
+    <feMergeNode in="blur"/>
+    <feMergeNode in="SourceGraphic"/>
+  </feMerge>
+</filter>
+
+<filter id="laserBlur" x="-20%" y="-20%" width="140%" height="140%">
+  <feGaussianBlur stdDeviation="5"/>
+</filter>
+</defs><polygon points="16,0 884,0 900,16 900,234 884,250 16,250 0,234 0,16" fill="url(#cyberCardBg)" stroke="#142442" stroke-width="1.4"/><polygon points="18,2 882,2 898,18 898,232 882,248 18,248 2,232 2,18" fill="url(#cyberGrid)" opacity=".7"/><path d="M 0,24 L 0,16 L 16,0 L 28,0" fill="none" stroke="#ff007f" stroke-width="2.2"/><path d="M 872,0 L 884,0 L 900,16 L 900,24" fill="none" stroke="#ff007f" stroke-width="2.2"/><path d="M 900,226 L 900,234 L 884,250 L 872,250" fill="none" stroke="#ff007f" stroke-width="2.2"/><path d="M 28,250 L 16,250 L 0,234 L 0,226" fill="none" stroke="#ff007f" stroke-width="2.2"/><line x1="410" y1="1" x2="490" y2="1" stroke="#ff007f" stroke-width="2" stroke-opacity=".7"/><circle cx="406" cy="1" r="1.5" fill="#ff007f"/><circle cx="494" cy="1" r="1.5" fill="#ff007f"/><g opacity=".75"><line x1="2" y1="0" x2="898" y2="0" stroke="url(#neonCyan)" stroke-width="1.8" filter="url(#laserBlur)"><animate attributeName="y1" values="2;246;2" dur="4.2s" repeatCount="indefinite"/><animate attributeName="y2" values="2;246;2" dur="4.2s" repeatCount="indefinite"/></line><line x1="2" y1="0" x2="898" y2="0" stroke="#fff" stroke-width="1"><animate attributeName="y1" values="2;246;2" dur="4.2s" repeatCount="indefinite"/><animate attributeName="y2" values="2;246;2" dur="4.2s" repeatCount="indefinite"/></line></g><g transform="translate(76 76)"><circle cx="0" cy="0" r="36" fill="none" stroke="#ff007f" stroke-width="1.2" stroke-opacity=".5" stroke-dasharray="6 8"><animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="12s" repeatCount="indefinite"/></circle><circle cx="0" cy="0" r="23.4" fill="none" stroke="#ff007f" stroke-width="1.2" stroke-opacity=".6" stroke-dasharray="14 10"><animateTransform attributeName="transform" type="rotate" from="360" to="0" dur="8s" repeatCount="indefinite"/></circle><circle cx="0" cy="0" r="3" fill="#ff007f"><animate attributeName="opacity" values=".4;1;.4" dur="1.8s" repeatCount="indefinite"/></circle><line x1="-44" y1="0" x2="-32" y2="0" stroke="#ff007f" stroke-width="1.5"/><line x1="32" y1="0" x2="44" y2="0" stroke="#ff007f" stroke-width="1.5"/><line x1="0" y1="-44" x2="0" y2="-32" stroke="#ff007f" stroke-width="1.5"/><line x1="0" y1="32" x2="0" y2="44" stroke="#ff007f" stroke-width="1.5"/></g><rect x="136" y="24" width="736" height="32" fill="#18081a" stroke="#ff007f" stroke-width="1" stroke-opacity=".8"/><text x="152" y="45" fill="#ff007f" font-family="monospace" font-size="14" font-weight="bold" letter-spacing="2">PROJECT // CACHECORE [IN-MEMORY KEY-VALUE DB]</text><text x="856" y="45" fill="#fcee0a" font-family="monospace" font-size="11" font-weight="bold" text-anchor="end">[ LOW-LATENCY C++20 ]</text><text x="136" y="80" fill="#00f0ff" font-family="monospace" font-size="12" font-weight="bold" letter-spacing="1">HIGH-CONCURRENCY IN-MEMORY STORAGE WITH DISK PERSISTENCE</text><text x="136" y="108" fill="#e6f6ff" font-family="monospace" font-size="11.5">Engineered from ground up in modern C++20 with multithreaded reader-writer concurrency locks.</text><text x="136" y="128" fill="#7898ba" font-family="monospace" font-size="11">Implements LRU/LFU cache eviction policies, Write-Ahead Logging (WAL) for durability,</text><text x="136" y="148" fill="#7898ba" font-family="monospace" font-size="11">and periodic disk snapshotting to deliver sub-millisecond retrieval benchmarks.</text><g transform="translate(136 174)"><path d="M 4 0 L 49.5 0 L 53.5 4 L 53.5 16 L 49.5 20 L 4 20 L 0 16 L 0 4 Z" fill="#0b172a" stroke="#ff007f" stroke-width="1" stroke-opacity=".8"/><text x="26.75" y="14" fill="#ff007f" font-family="monospace" font-size="10.5" font-weight="bold" text-anchor="middle" letter-spacing="1">C++20</text></g><g transform="translate(210 174)"><path d="M 4 0 L 139.5 0 L 143.5 4 L 143.5 16 L 139.5 20 L 4 20 L 0 16 L 0 4 Z" fill="#0b172a" stroke="#ff007f" stroke-width="1" stroke-opacity=".8"/><text x="71.75" y="14" fill="#ff007f" font-family="monospace" font-size="10.5" font-weight="bold" text-anchor="middle" letter-spacing="1">CONCURRENCY LOCKS</text></g><g transform="translate(384 174)"><path d="M 4 0 L 124.5 0 L 128.5 4 L 128.5 16 L 124.5 20 L 4 20 L 0 16 L 0 4 Z" fill="#0b172a" stroke="#00f0ff" stroke-width="1" stroke-opacity=".8"/><text x="64.25" y="14" fill="#00f0ff" font-family="monospace" font-size="10.5" font-weight="bold" text-anchor="middle" letter-spacing="1">WAL PERSISTENCE</text></g><g transform="translate(538 174)"><path d="M 4 0 L 139.5 0 L 143.5 4 L 143.5 16 L 139.5 20 L 4 20 L 0 16 L 0 4 Z" fill="#0b172a" stroke="#fcee0a" stroke-width="1" stroke-opacity=".8"/><text x="71.75" y="14" fill="#fcee0a" font-family="monospace" font-size="10.5" font-weight="bold" text-anchor="middle" letter-spacing="1">EVICTION POLICIES</text></g><g transform="translate(706 174)"><path d="M 4 0 L 64.5 0 L 68.5 4 L 68.5 16 L 64.5 20 L 4 20 L 0 16 L 0 4 Z" fill="#0b172a" stroke="#00ff9d" stroke-width="1" stroke-opacity=".8"/><text x="34.25" y="14" fill="#00ff9d" font-family="monospace" font-size="10.5" font-weight="bold" text-anchor="middle" letter-spacing="1">SYSTEMS</text></g><line x1="136" y1="216" x2="872" y2="216" stroke="#142442" stroke-width="1"/><text x="136" y="233" fill="#7898ba" font-family="monospace" font-size="10" letter-spacing="1">REPO: github.com/Tanishq7361/CacheCore // LOW-LEVEL ENGINE ONLINE</text></svg>
