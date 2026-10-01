@@ -1,0 +1,46 @@
+name: Update the Realm
+
+on:
+  schedule:
+    - cron: "17 */6 * * *"     # every six hours
+  workflow_dispatch:            # the "Run workflow" button
+  push:
+    branches: [main]
+    paths:
+      - "scripts/**"
+      - ".github/workflows/update-realm.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-realm
+  cancel-in-progress: true
+
+jobs:
+  scribe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - run: pip install fonttools
+
+      - name: Compile the ledger
+        run: python scripts/update_stats.py
+        env:
+          GH_USER: ${{ github.repository_owner }}
+          # Optional: add a classic PAT with read:user (+ repo for private repos)
+          # as a repository secret named STATS_TOKEN to count private work too.
+          GH_TOKEN: ${{ secrets.STATS_TOKEN || secrets.GITHUB_TOKEN }}
+
+      - name: Commit the new scrolls
+        run: |
+          git config user.name  "realm-scribe[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/stats.svg assets/langs.svg assets/heatmap.svg
+          git diff --staged --quiet || (git commit -m "chore: update the ledger of the realm" && git push)
