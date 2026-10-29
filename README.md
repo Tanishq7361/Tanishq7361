@@ -135,6 +135,9 @@ Production-grade relational database system in BCNF with ACID transactions, trig
 
 <br><br>
 
+<img src="https://raw.githubusercontent.com/platane/snk/output/github-contribution-grid-snake-dark.svg" width="90%" alt="GitHub Contribution Grid Snake" />
+
+<br><br>
 </div>
 
 <img src="https://capsule-render.vercel.app/api?type=rect&color=0:6366F1,50:8B5CF6,100:EC4899&height=4&section=header" width="100%" />
