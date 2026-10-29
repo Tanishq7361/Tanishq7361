@@ -1,111 +1,163 @@
 <div align="center">
 
-<img src="assets/header.svg" width="100%" alt="Tanishq Shah — Cyberpunk Sci-Fi HUD Terminal"/>
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:6366F1,50:8B5CF6,100:EC4899&height=220&section=header&text=Tanishq%20Shah&fontSize=60&fontColor=ffffff&fontAlignY=40&desc=Systems%20and%20Full-Stack%20Engineer%20%7C%20C%2B%2B20%20%7C%20High-Performance%20Software&descAlignY=58&descSize=18&animation=fadeIn" width="100%" />
 
-<img src="assets/titles.svg" width="100%" alt="Tactical Directives: Systems Architect · C++20 Low-Level · Full-Stack Operator · Algorithm Specialist"/>
+<br>
 
-<br/>
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=Inter&weight=600&size=22&duration=2500&pause=800&color=A78BFA&center=true&vCenter=true&width=560&lines=Low-Level+Systems+%26+C%2B%2B20;Full-Stack+Web+Development;Distributed+Systems+%26+Databases;Competitive+Programming)](https://git.io/typing-svg)
+<br>
 
-<img src="assets/h-about.svg" width="100%" alt="Operative Dossier // Tactical Identity &amp; Protocols"/>
-
-<img src="assets/about.svg" width="100%" alt="Operative Dossier: Tanishq Shah, DA-IICT Gandhinagar. C++20, Spring Boot, React, PostgreSQL."/>
-
-<img src="assets/divider.svg" width="100%" alt=""/>
-
-<img src="assets/h-armory.svg" width="100%" alt="Cyber Arsenal // Core Weapons &amp; Tech Systems"/>
-
-<img src="assets/armory.svg" width="100%" alt="Tech Stack: C++20, Java, Python, SQL, TypeScript, Spring Boot, React, PostgreSQL, FastAPI, Node.js, Git, Linux"/>
-
-<img src="assets/divider.svg" width="100%" alt=""/>
-
-<img src="assets/h-quests.svg" width="100%" alt="Active Missions // Deployed Systems &amp; Repositories"/>
-
-<!-- Mission 01: EquiSplit -->
-<a href="https://github.com/Tanishq7361/EquiSplit">
-  <img src="assets/quest-equisplit.svg" width="100%" alt="EquiSplit — Fintech Expense Sharing &amp; Debt Simplification Platform"/>
-</a>
-
-<a href="https://github.com/Tanishq7361/EquiSplit"><img src="assets/btn-repo.svg" width="240" alt="Access EquiSplit Repo"/></a>
-
-<br/>
-
-<!-- Mission 02: Vaayu -->
-<a href="https://github.com/Tanishq7361/Vaayu">
-  <img src="assets/quest-vaayu.svg" width="100%" alt="Vaayu — Atmospheric Intelligence &amp; Real-Time Telemetry System"/>
-</a>
-
-<a href="https://github.com/Tanishq7361/Vaayu"><img src="assets/btn-repo.svg" width="240" alt="Access Vaayu Repo"/></a>
-
-<br/>
-
-<!-- Mission 03: CacheCore -->
-<a href="https://github.com/Tanishq7361/CacheCore">
-  <img src="assets/quest-cachecore.svg" width="100%" alt="CacheCore — C++20 Multithreaded In-Memory Key-Value Database with WAL Persistence"/>
-</a>
-
-<a href="https://github.com/Tanishq7361/CacheCore"><img src="assets/btn-repo.svg" width="240" alt="Access CacheCore Repo"/></a>
-
-<br/><br/>
-
-<img src="assets/divider.svg" width="100%" alt=""/>
-
-<img src="assets/h-feats.svg" width="100%" alt="Combat Telemetry // Hackathons &amp; Citations"/>
-
-<img src="assets/feats.svg" width="100%" alt="Goldman Sachs India Hackathon 2026, Google Agentic AI Day 2025, Tic Tech Toe Hackathons, CP Cadre"/>
-
-<img src="assets/divider.svg" width="100%" alt=""/>
-
-<img src="assets/h-ledger.svg" width="100%" alt="Neural Ledger // Living Record of Deeds"/>
-
-<img src="assets/stats.svg" width="100%" alt="GitHub Cyber Stats Matrix"/>
-
-<img src="assets/langs.svg" width="100%" alt="Language Telemetry by Weight"/>
-
-<img src="assets/heatmap.svg" width="100%" alt="Neural Firings Matrix Heatmap"/>
-
-<img src="assets/divider.svg" width="100%" alt=""/>
-
-<img src="assets/h-contact.svg" width="100%" alt="Comms Array // Open Transmission Channels"/>
-
-<a href="mailto:tanishq7361@gmail.com"><img src="assets/btn-email.svg" width="240" alt="Transmit Email"/></a>
-<a href="https://www.linkedin.com/in/tanishq-shah7"><img src="assets/btn-linkedin.svg" width="240" alt="Neural Link"/></a>
-<a href="https://github.com/Tanishq7361"><img src="assets/btn-github.svg" width="240" alt="Cyber Archive"/></a>
-
-<br/><br/>
-
-<img src="assets/footer.svg" width="100%" alt="All runtimes nominal · Zero uncaught exceptions"/>
+<a href="https://github.com/Tanishq7361"><img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white" /></a>
+<a href="https://www.linkedin.com/in/tanishq-shah7"><img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" /></a>
+<a href="https://leetcode.com/u/King-T_7361/"><img src="https://img.shields.io/badge/LeetCode-FFA116?style=for-the-badge&logo=leetcode&logoColor=black" /></a>
+<a href="https://codeforces.com/profile/King-T"><img src="https://img.shields.io/badge/Codeforces-1F8ACB?style=for-the-badge&logo=codeforces&logoColor=white" /></a>
+<a href="https://x.com/tanishq7361"><img src="https://img.shields.io/badge/X-000000?style=for-the-badge&logo=x&logoColor=white" /></a>
 
 </div>
 
-<details>
-<summary><sub>⚡ Operative plain-text summary (for screen readers &amp; search indexers)</sub></summary>
+<br>
+<img src="https://capsule-render.vercel.app/api?type=rect&color=0:6366F1,50:8B5CF6,100:EC4899&height=4&section=header" width="100%" />
+<br>
 
-<br/>
+<div align="center">
 
-**Tanishq Shah** is an ICT student at DA-IICT (Dhirubhai Ambani University), Gandhinagar, specialized in low-level systems programming in C++20, high-concurrency database architectures, and robust full-stack web applications. Seeking software engineering internships and full-time placements.
+## 🚀 Featured Projects
 
-**Transmission &amp; Channels**
-- **GitHub:** [Tanishq7361](https://github.com/Tanishq7361)
-- **LinkedIn:** [tanishq-shah7](https://www.linkedin.com/in/tanishq-shah7)
-- **Email:** [tanishq7361@gmail.com](mailto:tanishq7361@gmail.com)
-- **Codeforces:** [King-T](https://codeforces.com/profile/King-T)
-- **LeetCode:** [King-T_7361](https://leetcode.com/u/King-T_7361)
-- **CodeChef:** [tanishq7361](https://www.codechef.com/users/tanishq7361)
-- **Codolio:** [King-T](https://codolio.com/profile/King-T)
+</div>
 
-**Active Missions &amp; Repositories**
-- **[EquiSplit](https://github.com/Tanishq7361/EquiSplit)**: Full-stack fintech expense sharing and intelligent debt simplification platform built with Spring Boot, React, PostgreSQL, and JWT authentication.
-- **[Vaayu](https://github.com/Tanishq7361/Vaayu)**: Atmospheric intelligence &amp; environmental sensory telemetry system ingesting real-time air quality metrics, predicting trends, and visualizing geospatial data. Built with Python, FastAPI, and React.
-- **[CacheCore](https://github.com/Tanishq7361/CacheCore)**: High-performance in-memory key-value database engineered in C++20 with multithreaded concurrency locks, LRU/LFU cache eviction, Write-Ahead Logging (WAL), and disk persistence.
+<br>
 
-**Combat Record &amp; Achievements**
-- **2026**: Goldman Sachs India Hackathon — Advanced to technical interview stage.
-- **2025**: Google Agentic AI Day Hackathon — Invited on-site finalist at BIEC Bengaluru.
-- **2025 &amp; 2026**: Tic Tech Toe Hackathons — On-campus honors at Dhirubhai Ambani University.
+<table>
+<tr>
+<td width="33%" valign="top" align="center">
+  
+**⚖️ EquiSplit**
+<br>
+Full-stack fintech expense sharing &amp; debt simplification platform using Min Cash Flow algorithm.
 
-**Tech Arsenal**
-- **Languages:** C++20, Java, Python, SQL, TypeScript, JavaScript
-- **Frameworks:** Spring Boot, React.js, FastAPI, Node.js, PostgreSQL, Tailwind CSS
-- **Systems &amp; Tools:** Git, GitHub Actions, Linux/POSIX, Docker, Multithreading, Concurrency
+<br>
 
-</details>
+<img src="https://img.shields.io/badge/Spring_Boot-6DB33F?style=flat-square&logo=spring-boot&logoColor=white"/> <img src="https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=black"/> <img src="https://img.shields.io/badge/PostgreSQL-4169E1?style=flat-square&logo=postgresql&logoColor=white"/>
+
+<br><br>
+
+<a href="https://github.com/Tanishq7361/EquiSplit"><img src="https://img.shields.io/badge/GitHub-6366F1?style=flat-square&logo=github&logoColor=white"/></a>
+<a href="https://equisplit-app.vercel.app/"><img src="https://img.shields.io/badge/Live_Demo-EC4899?style=flat-square&logo=vercel&logoColor=white"/></a>
+
+</td>
+<td width="33%" valign="top" align="center">
+
+**⚡ CacheCore**
+<br>
+Redis-inspired multithreaded in-memory key-value database built from scratch with TTL &amp; snapshot persistence.
+
+<br>
+
+<img src="https://img.shields.io/badge/C%2B%2B-20-00599C?style=flat-square&logo=c%2B%2B&logoColor=white"/> <img src="https://img.shields.io/badge/Linux-FCC624?style=flat-square&logo=linux&logoColor=black"/> <img src="https://img.shields.io/badge/CMake-064F8C?style=flat-square&logo=cmake&logoColor=white"/>
+
+<br><br>
+
+<a href="https://github.com/Tanishq7361/CacheCore"><img src="https://img.shields.io/badge/GitHub-8B5CF6?style=flat-square&logo=github&logoColor=white"/></a>
+
+</td>
+<td width="33%" valign="top" align="center">
+
+**🚂 Railway DBMS**
+<br>
+Production-grade relational database system in BCNF with ACID transactions, triggers &amp; complex SQL optimization.
+
+<br>
+
+<img src="https://img.shields.io/badge/PostgreSQL-4169E1?style=flat-square&logo=postgresql&logoColor=white"/> <img src="https://img.shields.io/badge/SQL-CC292B?style=flat-square&logo=sqlite&logoColor=white"/> <img src="https://img.shields.io/badge/Database_Design-4A154B?style=flat-square&logo=databricks&logoColor=white"/>
+
+<br><br>
+
+<a href="https://github.com/Tanishq7361/Railway_Booking_Management_System"><img src="https://img.shields.io/badge/GitHub-EC4899?style=flat-square&logo=github&logoColor=white"/></a>
+
+</td>
+</tr>
+</table>
+
+<br>
+
+<img src="https://capsule-render.vercel.app/api?type=rect&color=0:6366F1,50:8B5CF6,100:EC4899&height=4&section=header" width="100%" />
+
+<br>
+
+<div align="center">
+
+## 🛠️ Tech Stack
+
+<br>
+
+**Languages**
+<br>
+<img src="https://skillicons.dev/icons?i=cpp,java,py,js,ts,mysql" />
+
+<br><br>
+
+**Frontend**
+<br>
+<img src="https://skillicons.dev/icons?i=react,tailwind,vite,html,css" />
+
+<br><br>
+
+**Backend & Frameworks**
+<br>
+<img src="https://skillicons.dev/icons?i=spring,nodejs,express,fastapi" />
+
+<br><br>
+
+**Database & Systems**
+<br>
+<img src="https://skillicons.dev/icons?i=postgres,mysql,redis" />
+
+<br><br>
+
+**Tools & Platforms**
+<br>
+<img src="https://skillicons.dev/icons?i=git,github,vscode,linux,docker,vercel" />
+
+<br><br>
+
+</div>
+
+<img src="https://capsule-render.vercel.app/api?type=rect&color=0:6366F1,50:8B5CF6,100:EC4899&height=4&section=header" width="100%" />
+
+<br>
+
+<div align="center">
+
+## 📊 GitHub Analytics
+<br>
+
+<img src="https://streak-stats.demolab.com?user=Tanishq7361&theme=radical&hide_border=true&background=151320&stroke=151320&ring=8B5CF6&fire=EC4899&currStreakLabel=A78BFA" width="70%" />
+
+<br><br>
+
+</div>
+
+<img src="https://capsule-render.vercel.app/api?type=rect&color=0:6366F1,50:8B5CF6,100:EC4899&height=4&section=header" width="100%" />
+
+<br>
+
+<div align="center">
+
+## 🤝 Connect
+
+<br>
+
+<a href="https://mail.google.com/mail/?view=cm&fs=1&to=tanishq7361@gmail.com" target="_blank">
+  <img src="https://img.shields.io/badge/Email-EA4335?style=for-the-badge&logo=gmail&logoColor=white" alt="Email" />
+</a>
+<a href="https://www.linkedin.com/in/tanishq-shah7"><img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" /></a>
+<a href="https://github.com/Tanishq7361"><img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white" /></a>
+<a href="https://leetcode.com/u/King-T_7361/"><img src="https://img.shields.io/badge/LeetCode-FFA116?style=for-the-badge&logo=leetcode&logoColor=black" /></a>
+<a href="https://codeforces.com/profile/King-T"><img src="https://img.shields.io/badge/Codeforces-1F8ACB?style=for-the-badge&logo=codeforces&logoColor=white" /></a>
+<a href="https://x.com/tanishq7361"><img src="https://img.shields.io/badge/X-000000?style=for-the-badge&logo=x&logoColor=white" /></a>
+
+<br><br>
+
+</div>
+
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:EC4899,50:8B5CF6,100:6366F1&height=100&section=footer" width="100%" />
